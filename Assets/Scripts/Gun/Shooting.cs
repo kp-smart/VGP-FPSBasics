@@ -7,20 +7,24 @@ public class Shooting : MonoBehaviour
     public Transform BulletSpawn;
     public GameObject BulletPrefab;
     public float BulletSpeed = 30.0f;
+    public float FiringDelay = 0.1f;
+    public float DelayLeft = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation);
-            //spawns new bullet
+            if(DelayLeft <= 0)
+            {
+                var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
+                bullet.SetActive(true); //make bullet appear
+                bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; //gives bullet speed, same as new Vector 3 (0, 0, 30)
+                DelayLeft = FiringDelay;
+            }
 
-            bullet.SetActive(true);
-            //make bullet appear
+            DelayLeft = DelayLeft - Time.deltaTime;
 
-            bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed;
-            //gives bullet speed, same as new Vector 3 (0, 0, 30)
         }
     }
 }

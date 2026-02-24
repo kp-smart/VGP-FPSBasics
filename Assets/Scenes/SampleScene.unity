@@ -1531,6 +1531,8 @@ MonoBehaviour:
   BulletSpawn: {fileID: 1211737062}
   BulletPrefab: {fileID: 287019586}
   BulletSpeed: 30
+  FiringDelay: 0.1
+  DelayLeft: 0
 --- !u!1001 &1500101701
 PrefabInstance:
   m_ObjectHideFlags: 0
