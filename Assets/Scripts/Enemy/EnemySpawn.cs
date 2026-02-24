@@ -10,7 +10,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 5; i++)
         {
             var position = new Vector3(Random.Range(-50, 50), 1, Random.Range(-50, 50));
             var enemy = Instantiate(EnemyPrefab, position, Quaternion.identity); //quaternion sets default rotation
