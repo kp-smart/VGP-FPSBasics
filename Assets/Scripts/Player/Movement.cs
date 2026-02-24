@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public float verticalInput;
     public GameObject player;
     private Transform myTransform;
+    public float speedMult;
 
     public float numKills = 0;
     public float numCoins = 0;
@@ -26,8 +27,8 @@ public class Movement : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        myTransform.Translate(Vector3.forward * verticalInput);
-        myTransform.Translate(Vector3.right * horizontalInput);
+        myTransform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speedMult);
+        myTransform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speedMult);
 
         numKillsUI.text = "Enemies Killed: " + numKills;
         numCoinsUI.text = "Coins Collected: " + numCoins;

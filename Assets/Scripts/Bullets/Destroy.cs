@@ -15,7 +15,7 @@ public class Destroy : MonoBehaviour
         Destroy(gameObject, bulletLifespan);
         //destroys bullet after 5 seconds
 
-        myPlayer = GameObject.Find("Player").GetComponent<Movement>();
+        //myPlayer = GameObject.Find("Player").GetComponent<Movement>();
         //drag and drop preferred, but this works as well
     }
 
