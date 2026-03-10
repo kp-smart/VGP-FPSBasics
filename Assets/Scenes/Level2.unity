@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 190674702}
   - component: {fileID: 190674703}
   - component: {fileID: 190674704}
+  - component: {fileID: 190674705}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -315,10 +316,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8759dde99698b64da2ce28790f62c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalInput: 0
-  verticalInput: 0
-  player: {fileID: 190674697}
-  speedMult: 10
+  playerCamera: {fileID: 963194227}
+  walkSpeed: 6
+  runSpeed: 12
+  jumpPower: 7
+  gravity: 10
+  lookSpeed: 2
+  lookXLimit: 45
+  defaultHeight: 2
+  crouchHeight: 1
+  crouchSpeed: 3
   numKills: 0
   numCoins: 0
   numKillsUI: {fileID: 2074898660}
@@ -363,6 +370,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayer: {fileID: 190674702}
+--- !u!143 &190674705
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190674697}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &284993039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1687,6 +1720,15 @@ MonoBehaviour:
   BulletSpawn: {fileID: 1211737062}
   BulletPrefab: {fileID: 287019586}
   BulletSpeed: 30
+  StartingDelay: 0.1
+  DelayLeft: 0
+  shootEffect: {fileID: 0}
+  gunAnimator: {fileID: 0}
+  ReloadTime: 3
+  StartingBulletNum: 6
+  BulletsLeft: 0
+  isReloading: 0
+  numBulletsUI: {fileID: 0}
 --- !u!1 &1806997538
 GameObject:
   m_ObjectHideFlags: 0

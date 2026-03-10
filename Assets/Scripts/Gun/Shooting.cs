@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -7,12 +9,22 @@ public class Shooting : MonoBehaviour
     public Transform BulletSpawn;
     public GameObject BulletPrefab;
     public float BulletSpeed = 30.0f;
-    public float FiringDelay = 0.1f;
+    public float StartingDelay = 0.1f;
     public float DelayLeft = 0f;
     private string WeaponType = "Single";
     public GameObject shootEffect;
     public Animator gunAnimator;
+    public float ReloadTime = 3.0f;
+    public int StartingBulletNum = 6;
+    public int BulletsLeft;
+    public Boolean isReloading = false;
+    public TextMeshProUGUI numBulletsUI;
     // Update is called once per frame
+
+    private void Start()
+    {
+        BulletsLeft = StartingBulletNum;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
@@ -25,47 +37,72 @@ public class Shooting : MonoBehaviour
             {
                 WeaponType = "Single";
             }
-
-            Debug.Log(WeaponType);
         }
 
         
-        if (Input.GetMouseButton(0)) //if left-clicking
+        if (Input.GetMouseButton(0))
         {
-            if (WeaponType == "Single")
+            if (BulletsLeft > 0 && isReloading == false)
             {
-                if (DelayLeft <= 0)
+                if (WeaponType == "Single")
                 {
-                    shootEffect.GetComponent<ParticleSystem>().Play(); //VFX
-                    gunAnimator.SetTrigger("Recoil"); //Play recoil animation
-                    var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
-                    bullet.SetActive(true); //make bullet appear
-                    bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; //gives bullet speed, same as new Vector 3 (0, 0, 30)
-                    DelayLeft = FiringDelay;
-                }
+                    if (DelayLeft <= 0)
+                    {
+                        shootEffect.GetComponent<ParticleSystem>().Play(); //VFX
+                        gunAnimator.SetTrigger("Recoil"); //Play recoil animation
+                        var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
+                        bullet.SetActive(true); //make bullet appear
+                        bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; //gives bullet speed, same as new Vector 3 (0, 0, 30)
+                        DelayLeft = StartingDelay;
+                        BulletsLeft -= 1;
+                    }
 
-                DelayLeft = DelayLeft - Time.deltaTime;
-            }
-           
-            if (WeaponType == "Double")
-            {
-                if (DelayLeft <= 0)
-                {
-                    Vector3 bullet1position = BulletSpawn.position;
-                    Vector3 bullet2position = BulletSpawn.position;
-                    bullet1position.x += 0.5f;
-                    bullet2position.x -= 0.5f;
-                    var bullet1 = Instantiate(BulletPrefab, bullet1position, BulletSpawn.rotation);
-                    var bullet2 = Instantiate(BulletPrefab, bullet2position, BulletSpawn.rotation);
-                    bullet1.SetActive(true);
-                    bullet2.SetActive(true);
-                    bullet1.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed;
-                    bullet2.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed;
-                    DelayLeft = FiringDelay;
+                    DelayLeft = DelayLeft - Time.deltaTime;
                 }
-
-                DelayLeft = DelayLeft - Time.deltaTime;
             }
+            
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reload();
+        }
+
+        numBulletsUI.text = "Bullets Remaining: " + BulletsLeft + " / " + StartingBulletNum;
     }
+
+    void Reload()
+    {
+        isReloading = true;
+        Invoke("ReloadCompleted", ReloadTime);
+    }
+
+    void ReloadCompleted()
+    {
+        BulletsLeft = StartingBulletNum;
+        isReloading = false;
+        Debug.Log("test reload");
+    }
+
+    /*
+     if (WeaponType == "Double")
+                {
+                    if (DelayLeft <= 0)
+                    {
+                        Vector3 bullet1position = BulletSpawn.position;
+    Vector3 bullet2position = BulletSpawn.position;
+    bullet1position.x += 0.5f;
+                        bullet2position.x -= 0.5f;
+                        var bullet1 = Instantiate(BulletPrefab, bullet1position, BulletSpawn.rotation);
+    var bullet2 = Instantiate(BulletPrefab, bullet2position, BulletSpawn.rotation);
+    bullet1.SetActive(true);
+                        bullet2.SetActive(true);
+                        bullet1.GetComponent<Rigidbody>().velocity = Vector3.forward* BulletSpeed;
+    bullet2.GetComponent<Rigidbody>().velocity = Vector3.forward* BulletSpeed;
+    DelayLeft = FiringDelay;
+                    }
+
+DelayLeft = DelayLeft - Time.deltaTime;
+                }
+    */
 }
