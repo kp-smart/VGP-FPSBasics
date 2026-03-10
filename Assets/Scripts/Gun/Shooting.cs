@@ -10,11 +10,11 @@ public class Shooting : MonoBehaviour
     public float FiringDelay = 0.1f;
     public float DelayLeft = 0f;
     private string WeaponType = "Single";
-
+    public GameObject shootEffect;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (WeaponType == "Single")
             {
@@ -28,18 +28,20 @@ public class Shooting : MonoBehaviour
             Debug.Log(WeaponType);
         }
 
-
-        if (Input.GetMouseButton(0))
+        
+        if (Input.GetMouseButton(0)) //if left-clicking
         {
             if (WeaponType == "Single")
             {
                 if (DelayLeft <= 0)
                 {
+                    shootEffect.GetComponent<ParticleSystem>().Play();
                     var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
                     bullet.SetActive(true); //make bullet appear
                     bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; //gives bullet speed, same as new Vector 3 (0, 0, 30)
                     DelayLeft = FiringDelay;
                 }
+
                 DelayLeft = DelayLeft - Time.deltaTime;
             }
            
@@ -59,10 +61,9 @@ public class Shooting : MonoBehaviour
                     bullet2.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed;
                     DelayLeft = FiringDelay;
                 }
+
                 DelayLeft = DelayLeft - Time.deltaTime;
             }
         }
-
-        
     }
 }
