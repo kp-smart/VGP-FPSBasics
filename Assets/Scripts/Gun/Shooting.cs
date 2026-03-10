@@ -11,6 +11,7 @@ public class Shooting : MonoBehaviour
     public float DelayLeft = 0f;
     private string WeaponType = "Single";
     public GameObject shootEffect;
+    public Animator gunAnimator;
     // Update is called once per frame
     void Update()
     {
@@ -35,7 +36,8 @@ public class Shooting : MonoBehaviour
             {
                 if (DelayLeft <= 0)
                 {
-                    shootEffect.GetComponent<ParticleSystem>().Play();
+                    shootEffect.GetComponent<ParticleSystem>().Play(); //VFX
+                    gunAnimator.SetTrigger("Recoil"); //Play recoil animation
                     var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
                     bullet.SetActive(true); //make bullet appear
                     bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; //gives bullet speed, same as new Vector 3 (0, 0, 30)
