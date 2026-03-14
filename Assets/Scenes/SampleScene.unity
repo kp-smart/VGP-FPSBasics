@@ -2247,6 +2247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901515037}
   - component: {fileID: 1901515036}
+  - component: {fileID: 1901515038}
   m_Layer: 0
   m_Name: CodingPractice
   m_TagString: Untagged
@@ -2261,11 +2262,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901515035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25f694ea1842c7144867e52b85700a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a: 10
 --- !u!4 &1901515037
 Transform:
   m_ObjectHideFlags: 0
@@ -2281,6 +2283,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901515038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901515035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808962429f8859459ef3911e0430076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  array: 01000000010000000100000001000000010000000100000001000000020000000200000002000000
+  a: 0
 --- !u!1 &1924990551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3043,7 +3059,7 @@ MonoBehaviour:
   attackSpeedForward: 5
   attackSpeedUp: 2
   sightRange: 8
-  attackRange: 4
+  attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &2040409579

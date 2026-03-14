@@ -81,7 +81,6 @@ public class Shooting : MonoBehaviour
     {
         BulletsLeft = StartingBulletNum;
         isReloading = false;
-        Debug.Log("test reload");
     }
 
     /*
