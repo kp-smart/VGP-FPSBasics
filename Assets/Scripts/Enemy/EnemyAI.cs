@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     public float walkPointRange;
 
 
-    //Attacking 
+    //attacking 
     public float timeBetweenAttacks;
     public float timeBetweenDeathsSETValue = 1f;
     bool alreadyAttacked;
@@ -106,8 +106,6 @@ public class EnemyAI : MonoBehaviour
             Attack();
 
             timeBetweenAttacks = timeBetweenDeathsSETValue;
-
-            anim.SetTrigger("Attack");
         }
     }
 
@@ -121,6 +119,11 @@ public class EnemyAI : MonoBehaviour
 
     void Attack()
         {
+        anim.SetTrigger("Attack");
+        Rigidbody rb = Instantiate(AttackPrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.gameObject.SetActive(true);
+        rb.AddForce(transform.forward * attackSpeedForward, ForceMode.Impulse);
+        rb.AddForce(transform.up * attackSpeedUp, ForceMode.Impulse);
         //Rigidbody rb = Instantiate(AttackPrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         //rb.AddForce(transform.forward* attackSpeedForward, ForceMode.Impulse);
         //rb.AddForce(transform.up*attackSpeedUp, ForceMode.Impulse);
