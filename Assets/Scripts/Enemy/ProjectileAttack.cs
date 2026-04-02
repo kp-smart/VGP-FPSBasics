@@ -9,7 +9,6 @@ public class ProjectileAttack : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //healthBar = GameObject.Find("Player").GetComponent<HealthBar>();
         Destroy(gameObject, life);
     }
 
@@ -19,7 +18,8 @@ public class ProjectileAttack : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
         {
             //gunShoot.enemyDestroyed++;
-            double updatedHealth = healthBar.healthBarSprite.fillAmount - 0.2;
+            Destroy(gameObject);
+            double updatedHealth = healthBar.healthBarSprite.fillAmount - 0.1;
             healthBar.UpdateHealthBar(updatedHealth);
             //Destroy(collision.gameObject);
             //Destroy(gameObject);
