@@ -52,7 +52,7 @@ public class Shooting : MonoBehaviour
                         gunAnimator.SetTrigger("Recoil"); //Play recoil animation
                         var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
                         bullet.SetActive(true); //make bullet visible
-                        bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; //gives bullet speed, same as new Vector 3 (0, 0, 30)
+                        bullet.GetComponent<Rigidbody>().velocity = BulletSpawn.forward * BulletSpeed; //gives bullet speed
                         DelayLeft = StartingDelay;
                         BulletsLeft -= 1;
                     }
