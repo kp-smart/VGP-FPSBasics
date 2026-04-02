@@ -118,7 +118,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     void Attack()
-        {
+    {
         anim.SetTrigger("Attack");
         Rigidbody rb = Instantiate(AttackPrefab, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb.gameObject.SetActive(true);
