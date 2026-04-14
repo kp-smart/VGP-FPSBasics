@@ -2813,6 +2813,7 @@ GameObject:
   - component: {fileID: 1901515036}
   - component: {fileID: 1901515038}
   - component: {fileID: 1901515039}
+  - component: {fileID: 1901515040}
   m_Layer: 0
   m_Name: CodingPractice
   m_TagString: Untagged
@@ -2869,12 +2870,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901515035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a3b550e91048b34ba9cea25876c3123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   input: 24
+--- !u!114 &1901515040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901515035}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df6aa16b14b53a45a4203f9fb296e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 1337
 --- !u!1 &1924990551
 GameObject:
   m_ObjectHideFlags: 0
