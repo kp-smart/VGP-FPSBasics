@@ -18,7 +18,10 @@ public class Shooting : MonoBehaviour
     public int StartingBulletNum = 6;
     public int BulletsLeft;
     public Boolean isReloading = false;
+
     public TextMeshProUGUI numBulletsUI;
+
+    public AudioPlayer audioPlayer;
     // Update is called once per frame
 
     private void Start()
@@ -48,6 +51,7 @@ public class Shooting : MonoBehaviour
                 {
                     if (DelayLeft <= 0)
                     {
+                        audioPlayer.PlayGunFire();
                         shootEffect.GetComponent<ParticleSystem>().Play(); //VFX
                         gunAnimator.SetTrigger("Recoil"); //Play recoil animation
                         var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
@@ -73,6 +77,7 @@ public class Shooting : MonoBehaviour
 
     void Reload()
     {
+        audioPlayer.PlayGunReload();
         isReloading = true;
         Invoke("ReloadCompleted", ReloadTime);
     }

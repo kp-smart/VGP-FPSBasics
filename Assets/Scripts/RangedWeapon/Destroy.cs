@@ -8,6 +8,9 @@ public class Destroy : MonoBehaviour
 
     public Movement myPlayer;
 
+    public AudioPlayer audioPlayer;
+    public GameObject EnemyDyingSource;
+
     // Awake is called when the gameObject is called
     void Awake()
     {
@@ -22,10 +25,11 @@ public class Destroy : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.SetActive(false);
-            //destroys obstacle
-            Destroy(gameObject);
-            //destroys bullet
+            EnemyDyingSource.transform.position = other.gameObject.transform.position;
+            audioPlayer.PlayEnemyDying();
+
+            other.gameObject.SetActive(false); //destroys obstacle
+            Destroy(gameObject); //destroys bullet
 
             myPlayer.numKills++;
         }
