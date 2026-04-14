@@ -716,8 +716,8 @@ MonoBehaviour:
   GunSource: {fileID: 1211737063}
   EnemySource: {fileID: 799765654}
   gunFire: {fileID: 8300000, guid: 92097a70b8134f24dacfd33cd422ab35, type: 3}
-  gunReload: {fileID: 0}
-  enemyDying: {fileID: 8300000, guid: 877842d13d0339f46a16ec556f2c5750, type: 3}
+  gunReload: {fileID: 8300000, guid: 9f24b82fd5e878d4a8935718303460fd, type: 3}
+  enemyDying: {fileID: 8300000, guid: caef51319cf9048498f434f53bb2b846, type: 3}
 --- !u!4 &701332239
 Transform:
   m_ObjectHideFlags: 0
