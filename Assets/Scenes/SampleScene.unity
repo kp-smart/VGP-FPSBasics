@@ -3038,6 +3038,7 @@ GameObject:
   - component: {fileID: 1901515038}
   - component: {fileID: 1901515039}
   - component: {fileID: 1901515040}
+  - component: {fileID: 1901515041}
   m_Layer: 0
   m_Name: CodingPractice
   m_TagString: Untagged
@@ -3113,6 +3114,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 1337
+--- !u!114 &1901515041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901515035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43025bfbd3364134db8e6f8e8b1b40a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  s: tacocat
 --- !u!1 &1924990551
 GameObject:
   m_ObjectHideFlags: 0
