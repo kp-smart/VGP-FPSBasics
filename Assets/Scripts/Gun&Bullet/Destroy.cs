@@ -11,24 +11,35 @@ public class Destroy : MonoBehaviour
     public AudioPlayer audioPlayer;
     public GameObject EnemyDyingSource;
 
+    public SelfVariables selfVariables;
+    //public HealthBar healthBar;
+
     // Awake is called when the gameObject is called
     void Awake()
     {
-        Destroy(gameObject, bulletLifespan);
-        //destroys bullet after 5 seconds
+        Destroy(gameObject, bulletLifespan); //destroys bullet after 5 seconds
 
         //myPlayer = GameObject.Find("Player").GetComponent<Movement>();
         //drag and drop preferred, but this works as well
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Enemy")
+        var enemyVar = collision.gameObject.GetComponent<SelfVariables>();
+
+
+        if (enemyVar != null && enemyVar.healthbar != null)
         {
-            EnemyDyingSource.transform.position = other.gameObject.transform.position;
+            double updatedHealth = enemyVar.healthbar.healthBarSprite.fillAmount - 0.5f;
+            enemyVar.healthbar.UpdateHealthBar(updatedHealth);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyDyingSource.transform.position = collision.gameObject.transform.position;
             audioPlayer.PlayEnemyDying();
 
-            other.gameObject.SetActive(false); //destroys obstacle
+            //Destroy(collision.gameObject); //destroys enemy
             Destroy(gameObject); //destroys bullet
 
             myPlayer.numKills++;
