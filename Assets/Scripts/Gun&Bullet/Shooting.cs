@@ -8,37 +8,41 @@ public class Shooting : MonoBehaviour
 {
     public Transform BulletSpawn;
     public GameObject BulletPrefab;
-    public float BulletSpeed = 30.0f;
-    public float StartingDelay = 0.1f;
     public float DelayLeft = 0f;
-    private string WeaponType = "Single";
     public GameObject shootEffect;
     public Animator gunAnimator;
     public float ReloadTime = 3.0f;
-    public int StartingBulletNum = 6;
     public int BulletsLeft;
     public Boolean isReloading = false;
 
     public TextMeshProUGUI numBulletsUI;
 
     public AudioPlayer audioPlayer;
-    // Update is called once per frame
+
+    public string currentWeapon = "Pistol";
+    public float BulletSpeed = 30.0f;
+    public float StartingDelay = 0.5f;
+    public int magSize = 6;
+    public GameObject Pistol;
+    public bool hasPistol = true;
+    public GameObject Rifle;
+    public bool hasRifle = false;
 
     private void Start()
     {
-        BulletsLeft = StartingBulletNum;
+        BulletsLeft = magSize;
     }
     void Update()
     {
+        //Switching weapons
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (WeaponType == "Single")
+            if (currentWeapon == "Pistol" && hasRifle)
             {
-                WeaponType = "Double";
-            }
-            else
+                SwitchToRifle();
+            } else if (currentWeapon == "Rifle" && hasPistol) 
             {
-                WeaponType = "Single";
+                SwitchToPistol();
             }
         }
 
@@ -47,8 +51,6 @@ public class Shooting : MonoBehaviour
         {
             if (BulletsLeft > 0 && isReloading == false)
             {
-                if (WeaponType == "Single")
-                {
                     if (DelayLeft <= 0)
                     {
                         audioPlayer.PlayGunFire();
@@ -62,7 +64,6 @@ public class Shooting : MonoBehaviour
                     }
 
                     DelayLeft = DelayLeft - Time.deltaTime;
-                }
             }
             
         }
@@ -72,7 +73,7 @@ public class Shooting : MonoBehaviour
             Reload();
         }
 
-        numBulletsUI.text = "Bullets Remaining: " + BulletsLeft + " / " + StartingBulletNum;
+        numBulletsUI.text = "Bullets Remaining: " + BulletsLeft + " / " + magSize;
     }
 
     void Reload()
@@ -84,8 +85,31 @@ public class Shooting : MonoBehaviour
 
     void ReloadCompleted()
     {
-        BulletsLeft = StartingBulletNum;
+        BulletsLeft = magSize;
         isReloading = false;
+    }
+
+    void SwitchToRifle()
+    {
+        currentWeapon = "Rifle";
+        Pistol.SetActive(false);
+        Rifle.SetActive(true);
+        magSize = 30;
+        BulletsLeft = magSize;
+        BulletSpeed = 50f;
+        StartingDelay = 0.3f;
+
+    }
+    
+    void SwitchToPistol()
+    {
+        currentWeapon = "Pistol";
+        Rifle.SetActive(false);
+        Pistol.SetActive(true);
+        magSize = 6;
+        BulletsLeft = magSize;
+        BulletSpeed = 30f;
+        StartingDelay = 0.5f;
     }
 
     /*
@@ -109,4 +133,4 @@ public class Shooting : MonoBehaviour
 DelayLeft = DelayLeft - Time.deltaTime;
                 }
     */
-}
+    }
