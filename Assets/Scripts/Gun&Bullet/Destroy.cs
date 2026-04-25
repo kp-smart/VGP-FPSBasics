@@ -34,7 +34,7 @@ public class Destroy : MonoBehaviour
             enemyVar.healthbar.UpdateHealthBar(updatedHealth);
         }
 
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && enemyVar.healthbar.isDead)
         {
             EnemyDyingSource.transform.position = collision.gameObject.transform.position;
             audioPlayer.PlayEnemyDying();
