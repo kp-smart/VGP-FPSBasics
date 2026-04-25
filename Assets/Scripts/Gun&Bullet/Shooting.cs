@@ -25,12 +25,8 @@ public class Shooting : MonoBehaviour
     public int magSize = 6;
     public GameObject Pistol;
     public bool hasPistol = true;
-    public GameObject Rifle;
-    public bool hasRifle = false;
     public GameObject Shovel;
     public bool hasShovel = true;
-
-    public Destroy destroy;
 
     private void Start()
     {
@@ -41,9 +37,6 @@ public class Shooting : MonoBehaviour
         //Switching weapons
         if (Input.GetKeyDown(KeyCode.F))
         {
-            //if (currentWeapon != "Rifle" && hasRifle) {
-            //    SwitchToRifle();
-            //} 
             if (currentWeapon != "Shovel" && hasShovel) {
                 SwitchToShovel();
             } else if (currentWeapon != "Pistol" && hasPistol) {
@@ -51,7 +44,7 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        
+        //attacking
         if (Input.GetMouseButton(0))
         {
             if (currentWeapon == "Pistol")
@@ -72,6 +65,11 @@ public class Shooting : MonoBehaviour
 
                     DelayLeft = DelayLeft - Time.deltaTime;
                 }
+            }
+
+            if (currentWeapon == "Shovel")
+            {
+
             }
         }
 
@@ -96,18 +94,6 @@ public class Shooting : MonoBehaviour
         isReloading = false;
     }
 
-    void SwitchToRifle()
-    {
-        currentWeapon = "Rifle";
-        Pistol.SetActive(false);
-        Rifle.SetActive(true);
-        magSize = 30;
-        BulletsLeft = magSize;
-        BulletSpeed = 50f;
-        StartingDelay = 0.3f;
-
-    }
-    
     void SwitchToPistol()
     {
         currentWeapon = "Pistol";
