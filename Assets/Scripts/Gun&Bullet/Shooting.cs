@@ -27,6 +27,10 @@ public class Shooting : MonoBehaviour
     public bool hasPistol = true;
     public GameObject Rifle;
     public bool hasRifle = false;
+    public GameObject Shovel;
+    public bool hasShovel = true;
+
+    public Destroy destroy;
 
     private void Start()
     {
@@ -37,11 +41,12 @@ public class Shooting : MonoBehaviour
         //Switching weapons
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (currentWeapon == "Pistol" && hasRifle)
-            {
-                SwitchToRifle();
-            } else if (currentWeapon == "Rifle" && hasPistol) 
-            {
+            //if (currentWeapon != "Rifle" && hasRifle) {
+            //    SwitchToRifle();
+            //} 
+            if (currentWeapon != "Shovel" && hasShovel) {
+                SwitchToShovel();
+            } else if (currentWeapon != "Pistol" && hasPistol) {
                 SwitchToPistol();
             }
         }
@@ -49,8 +54,10 @@ public class Shooting : MonoBehaviour
         
         if (Input.GetMouseButton(0))
         {
-            if (BulletsLeft > 0 && isReloading == false)
+            if (currentWeapon == "Pistol")
             {
+                if (BulletsLeft > 0 && isReloading == false)
+                {
                     if (DelayLeft <= 0)
                     {
                         audioPlayer.PlayGunFire();
@@ -64,8 +71,8 @@ public class Shooting : MonoBehaviour
                     }
 
                     DelayLeft = DelayLeft - Time.deltaTime;
+                }
             }
-            
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -104,12 +111,19 @@ public class Shooting : MonoBehaviour
     void SwitchToPistol()
     {
         currentWeapon = "Pistol";
-        Rifle.SetActive(false);
+        Shovel.SetActive(false);
         Pistol.SetActive(true);
         magSize = 6;
         BulletsLeft = magSize;
         BulletSpeed = 30f;
         StartingDelay = 0.5f;
+    }
+
+    void SwitchToShovel()
+    {
+        currentWeapon = "Shovel";
+        Pistol.SetActive(false);
+        Shovel.SetActive(true);
     }
 
     /*
@@ -133,4 +147,4 @@ public class Shooting : MonoBehaviour
 DelayLeft = DelayLeft - Time.deltaTime;
                 }
     */
-    }
+}
