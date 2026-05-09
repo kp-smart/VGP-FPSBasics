@@ -25,8 +25,8 @@ public class Shooting : MonoBehaviour
     public int magSize = 6;
     public GameObject Pistol;
     public bool hasPistol = true;
-    public GameObject Rifle;
-    public bool hasRifle = false;
+    public GameObject Shovel;
+    public bool hasShovel = false;
 
     private void Start()
     {
@@ -37,10 +37,10 @@ public class Shooting : MonoBehaviour
         //Switching weapons
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (currentWeapon == "Pistol" && hasRifle)
+            if (currentWeapon == "Pistol" && hasShovel)
             {
-                SwitchToRifle();
-            } else if (currentWeapon == "Rifle" && hasPistol) 
+                SwitchToShovel();
+            } else if (currentWeapon == "Shovel" && hasPistol) 
             {
                 SwitchToPistol();
             }
@@ -89,11 +89,11 @@ public class Shooting : MonoBehaviour
         isReloading = false;
     }
 
-    void SwitchToRifle()
+    void SwitchToShovel()
     {
         currentWeapon = "Rifle";
         Pistol.SetActive(false);
-        Rifle.SetActive(true);
+        Shovel.SetActive(true);
         magSize = 30;
         BulletsLeft = magSize;
         BulletSpeed = 50f;
@@ -104,7 +104,7 @@ public class Shooting : MonoBehaviour
     void SwitchToPistol()
     {
         currentWeapon = "Pistol";
-        Rifle.SetActive(false);
+        Shovel.SetActive(false);
         Pistol.SetActive(true);
         magSize = 6;
         BulletsLeft = magSize;
