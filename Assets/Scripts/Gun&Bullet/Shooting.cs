@@ -39,7 +39,6 @@ public class Shooting : MonoBehaviour
         {
             if (currentWeapon == "Pistol" && hasShovel)
             {
-                Debug.Log("test");
                 SwitchToShovel();
             } 
             else if (currentWeapon == "Shovel" && hasPistol) 
@@ -57,7 +56,7 @@ public class Shooting : MonoBehaviour
                 {
                     if (DelayLeft <= 0)
                     {
-                        audioPlayer.PlayGunFire();
+                        audioPlayer.PlayGunFire(); //SFX
                         shootEffect.GetComponent<ParticleSystem>().Play(); //VFX
                         gunAnimator.SetTrigger("Recoil"); //Play recoil animation
                         var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
@@ -115,26 +114,27 @@ public class Shooting : MonoBehaviour
         BulletSpeed = 30f;
         StartingDelay = 0.5f;
     }
+}
 
-    /*
-     if (WeaponType == "Double")
+/*
+ if (WeaponType == "Double")
+            {
+                if (DelayLeft <= 0)
                 {
-                    if (DelayLeft <= 0)
-                    {
-                        Vector3 bullet1position = BulletSpawn.position;
-    Vector3 bullet2position = BulletSpawn.position;
-    bullet1position.x += 0.5f;
-                        bullet2position.x -= 0.5f;
-                        var bullet1 = Instantiate(BulletPrefab, bullet1position, BulletSpawn.rotation);
-    var bullet2 = Instantiate(BulletPrefab, bullet2position, BulletSpawn.rotation);
-    bullet1.SetActive(true);
-                        bullet2.SetActive(true);
-                        bullet1.GetComponent<Rigidbody>().velocity = Vector3.forward* BulletSpeed;
-    bullet2.GetComponent<Rigidbody>().velocity = Vector3.forward* BulletSpeed;
-    DelayLeft = FiringDelay;
-                    }
+                    Vector3 bullet1position = BulletSpawn.position;
+Vector3 bullet2position = BulletSpawn.position;
+bullet1position.x += 0.5f;
+                    bullet2position.x -= 0.5f;
+                    var bullet1 = Instantiate(BulletPrefab, bullet1position, BulletSpawn.rotation);
+var bullet2 = Instantiate(BulletPrefab, bullet2position, BulletSpawn.rotation);
+bullet1.SetActive(true);
+                    bullet2.SetActive(true);
+                    bullet1.GetComponent<Rigidbody>().velocity = Vector3.forward* BulletSpeed;
+bullet2.GetComponent<Rigidbody>().velocity = Vector3.forward* BulletSpeed;
+DelayLeft = FiringDelay;
+                }
 
 DelayLeft = DelayLeft - Time.deltaTime;
-                }
-    */
-    }
+            }
+*/
+

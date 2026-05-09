@@ -11,7 +11,7 @@ public class Destroy : MonoBehaviour
     public AudioPlayer audioPlayer;
     public GameObject EnemyDyingSource;
 
-    public SelfVariables selfVariables;
+    //public SelfVariables enemyHealthbar;
     //public HealthBar healthBar;
 
     // Awake is called when the gameObject is called
