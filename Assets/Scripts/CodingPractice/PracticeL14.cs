@@ -16,7 +16,7 @@ public class PracticeL14 : MonoBehaviour
     {
         string ans = "";
 
-        for (int i = 0; i < transmission.Length; i++)//need out at 2
+        for (int i = 0; i < transmission.Length; i++)
         {
             ans += transmission[i];
             int repeatNum = 1;
