@@ -8,6 +8,7 @@ public class HealthBar : MonoBehaviour
 
     public Image healthBarSprite;
     public GameObject Player;
+    public bool isDead = false;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class HealthBar : MonoBehaviour
 
         if (updatedHealth <= 0)
         {
+            isDead = true;
             Destroy(Player);
         }
     }
