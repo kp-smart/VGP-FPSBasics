@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f966ca15f5a229408253efc71f74f1b
+guid: f36950c568f7f634384dbf731e1968b5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: VGPShovelTexture_KPalaganas
-    second: {fileID: 2800000, guid: 366c427402560794b822d99d623a9ce6, type: 3}
+    second: {fileID: 2800000, guid: 26b8bc8305b884d4bbc7205515530a8b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -40,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 20
+    globalScale: 12
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.19999999
+    globalScale: 0.12
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
