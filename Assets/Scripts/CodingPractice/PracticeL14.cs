@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PracticeL14 : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public string input = "";
     void Start()
     {
@@ -18,7 +16,7 @@ public class PracticeL14 : MonoBehaviour
     {
         string ans = "";
 
-        for (int i = 0; i < transmission.Length; i++)
+        for (int i = 0; i < transmission.Length; i++)//need out at 2
         {
             ans += transmission[i];
             int repeatNum = 1;
@@ -29,6 +27,11 @@ public class PracticeL14 : MonoBehaviour
                 {
                     repeatNum++;
                     i++;
+
+                    if (i == transmission.Length - 1)
+                    {
+                        break;
+                    }
                 }
             }
 
