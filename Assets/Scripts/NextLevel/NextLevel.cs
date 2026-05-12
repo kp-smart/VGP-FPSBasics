@@ -27,6 +27,6 @@ public class NextLevel : MonoBehaviour
 
     void goToNextLevel()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("BackupLevel");
     }
 }
