@@ -40,7 +40,7 @@ public class Destroy : MonoBehaviour
             audioPlayer.PlayEnemyDying();
 
             //Destroy(collision.gameObject); //destroys enemy
-            //Destroy(gameObject); //destroys bullet
+            Destroy(gameObject); //destroys bullet
 
             myPlayer.numKills++;
         }
