@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -28,6 +29,7 @@ public class Shooting : MonoBehaviour
     public GameObject Shovel;
     public bool hasShovel = true;
 
+    public float bulletSpread;
     private void Start()
     {
         BulletsLeft = magSize;
@@ -61,7 +63,10 @@ public class Shooting : MonoBehaviour
                         gunAnimator.SetTrigger("Recoil"); //Play recoil animation
                         var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
                         bullet.SetActive(true); //make bullet visible
-                        bullet.GetComponent<Rigidbody>().velocity = BulletSpawn.forward * BulletSpeed; //gives bullet speed
+
+                        Vector3 bulletDirection = GetBulletDirection();
+                        bullet.transform.rotation = Quaternion.LookRotation(bulletDirection);
+                        bullet.GetComponent<Rigidbody>().velocity = bulletDirection * BulletSpeed; //gives bullet speed      prev BulletSpawn.forward
                         DelayLeft = StartingDelay;
                         BulletsLeft -= 1;
                     }
@@ -72,6 +77,7 @@ public class Shooting : MonoBehaviour
 
             if (currentWeapon == "Shovel")
             {
+                Debug.Log("test slash");
                 //slash
             }
         }
@@ -83,7 +89,14 @@ public class Shooting : MonoBehaviour
 
         numBulletsUI.text = "Bullets Remaining: " + BulletsLeft + " / " + magSize;
     }
+    private Vector3 GetBulletDirection()
+    {
+        float spreadAmount = Mathf.Max(0f, bulletSpread);
+        Vector2 randomSpread = UnityEngine.Random.insideUnitCircle * spreadAmount;
+        Quaternion spreadRotation = BulletSpawn.rotation * Quaternion.Euler(randomSpread.y, randomSpread.x, 0f);
 
+        return (spreadRotation * Vector3.forward).normalized;
+    }
     void Reload()
     {
         audioPlayer.PlayGunReload();
