@@ -342,10 +342,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7413879
+  m_Radius: 0.5724488
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: -0.027532041}
+  m_Center: {x: -0.008596718, y: 0, z: 0.0127303}
 --- !u!23 &190674699
 MeshRenderer:
   m_ObjectHideFlags: 0
