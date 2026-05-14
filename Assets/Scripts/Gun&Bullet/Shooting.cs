@@ -45,6 +45,7 @@ public class Shooting : MonoBehaviour
             } 
             else if (currentWeapon == "Shovel" && hasPistol) 
             {
+                Debug.Log("test");
                 SwitchToPistol();
             }
         }

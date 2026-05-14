@@ -1404,6 +1404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShovelExportTest
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f36950c568f7f634384dbf731e1968b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3809,6 +3813,7 @@ GameObject:
   - component: {fileID: 1403572494}
   - component: {fileID: 1403572497}
   - component: {fileID: 1403572498}
+  - component: {fileID: 1403572499}
   m_Layer: 6
   m_Name: Weapon
   m_TagString: Untagged
@@ -3826,7 +3831,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.547, y: 0.183, z: 0.748}
-  m_LocalScale: {x: 0.03, y: 0.2593395, z: 1.26}
+  m_LocalScale: {x: 0.000001, y: 0.00001, z: 1.26}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1367389965}
@@ -3933,8 +3938,9 @@ MonoBehaviour:
   magSize: 6
   Pistol: {fileID: 1367389964}
   hasPistol: 1
-  Shovel: {fileID: 0}
+  Shovel: {fileID: 65281149}
   hasShovel: 1
+  bulletSpread: 5
 --- !u!95 &1403572498
 Animator:
   serializedVersion: 5
@@ -3956,6 +3962,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1403572499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403572492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2f303de930288498430834f419b1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpawn: {fileID: 0}
+  BulletPrefab: {fileID: 0}
+  DelayLeft: 0
+  shootEffect: {fileID: 0}
+  gunAnimator: {fileID: 0}
+  ReloadTime: 3
+  BulletsLeft: 0
+  isReloading: 0
+  numBulletsUI: {fileID: 0}
+  audioPlayer: {fileID: 0}
+  currentWeapon: Pistol
+  BulletSpeed: 30
+  StartingDelay: 0.5
+  magSize: 6
+  Pistol: {fileID: 1367389964}
+  hasPistol: 1
+  Shovel: {fileID: 65281149}
+  hasShovel: 1
+  bulletSpread: 5
 --- !u!1001 &1428701344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4995,7 +5032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1806997539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5935,15 +5972,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8c44a9ee199ae1847b18c6f4b159681f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 299999.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c44a9ee199ae1847b18c6f4b159681f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1567848
+      value: 30000.002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c44a9ee199ae1847b18c6f4b159681f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2380953
+      value: 0.23809531
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c44a9ee199ae1847b18c6f4b159681f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5951,7 +5988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c44a9ee199ae1847b18c6f4b159681f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0029802322
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c44a9ee199ae1847b18c6f4b159681f, type: 3}
       propertyPath: m_LocalPosition.z
