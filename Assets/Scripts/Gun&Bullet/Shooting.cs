@@ -4,32 +4,35 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Shooting : MonoBehaviour
 {
+    public GameObject Pistol;
     public Transform BulletSpawn;
     public GameObject BulletPrefab;
+    public float BulletSpeed = 30.0f;
+    public float bulletSpread;
+    public int BulletsLeft;
+    public int magSize = 6;
+    public float StartingDelay = 0.5f;
     public float DelayLeft = 0f;
+    public Boolean isReloading = false;
+    public float ReloadTime = 3.0f;
     public GameObject shootEffect;
     public Animator gunAnimator;
-    public float ReloadTime = 3.0f;
-    public int BulletsLeft;
-    public Boolean isReloading = false;
 
     public TextMeshProUGUI numBulletsUI;
-
     public AudioPlayer audioPlayer;
 
     public string currentWeapon = "Pistol";
-    public float BulletSpeed = 30.0f;
-    public float StartingDelay = 0.5f;
-    public int magSize = 6;
-    public GameObject Pistol;
     public bool hasPistol = true;
-    public GameObject Shovel;
     public bool hasShovel = true;
 
-    public float bulletSpread;
+    public GameObject Shovel;
+    public bool canSlash = true;
+    public float slashCooldown = 2.0f;
+    
     private void Start()
     {
         BulletsLeft = magSize;
@@ -45,7 +48,6 @@ public class Shooting : MonoBehaviour
             } 
             else if (currentWeapon == "Shovel" && hasPistol) 
             {
-                Debug.Log("test");
                 SwitchToPistol();
             }
         }
@@ -78,8 +80,10 @@ public class Shooting : MonoBehaviour
 
             if (currentWeapon == "Shovel")
             {
-                Debug.Log("test slash");
-                //slash
+                if (canSlash)
+                {
+                    Slash();
+                }
             }
         }
 
@@ -117,7 +121,6 @@ public class Shooting : MonoBehaviour
         Pistol.SetActive(false);
         Shovel.SetActive(true);
     }
-    
     void SwitchToPistol()
     {
         currentWeapon = "Pistol";
@@ -128,7 +131,23 @@ public class Shooting : MonoBehaviour
         BulletSpeed = 30f;
         StartingDelay = 0.5f;
     }
+
+    void Slash()
+    {
+        canSlash = false;
+        //Animator anim = Shovel.GetComponent<Animator>();
+        //anim.SetTrigger("sword-attack");  
+        audioPlayer.PlayShovelSlash();
+        StartCoroutine(ResetAttackCooldown());
+    }
+
+    IEnumerator ResetAttackCooldown()
+    {
+        yield return new WaitForSeconds(slashCooldown);
+        canSlash = true;
+    }
 }
+
 
 /*
  if (WeaponType == "Double")

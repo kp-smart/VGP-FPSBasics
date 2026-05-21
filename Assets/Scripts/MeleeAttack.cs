@@ -2,26 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroy : MonoBehaviour
+public class MeleeAttack : MonoBehaviour
 {
-    public float bulletLifespan = 5.0f;
-
     public Movement myPlayer;
 
     public AudioPlayer audioPlayer;
     public GameObject EnemyDyingSource;
 
-    // Awake is called when the gameObject is called
-    void Awake()
-    {
-        Destroy(gameObject, bulletLifespan); //destroys bullet after 5 seconds
-
-        //myPlayer = GameObject.Find("Player").GetComponent<Movement>();
-        //drag and drop preferred, but this works as well
-    }
+    //public SelfVariables enemyHealthbar;
+    //public HealthBar healthBar;
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("testslash");
         var enemyVar = collision.gameObject.GetComponent<SelfVariables>();
 
 
@@ -37,9 +30,6 @@ public class Destroy : MonoBehaviour
             audioPlayer.PlayEnemyDying();
 
             //Destroy(collision.gameObject); //destroys enemy
-
-            Destroy(gameObject); //destroys bullet
-            
 
             myPlayer.numKills++;
         }

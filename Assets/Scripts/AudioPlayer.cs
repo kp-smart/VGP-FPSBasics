@@ -6,10 +6,12 @@ public class AudioPlayer : MonoBehaviour
 {
     public AudioSource GunSource;
     public AudioSource EnemySource;
+    public AudioSource ShovelSource;
 
     public AudioClip gunFire;
     public AudioClip gunReload;
     public AudioClip enemyDying;
+    public AudioClip shovelSlash;
 
     public void PlayGunFire()
     {
@@ -25,6 +27,12 @@ public class AudioPlayer : MonoBehaviour
     {
         EnemySource.clip = enemyDying;
         EnemySource.Play();
+    }
+
+    public void PlayShovelSlash()
+    {
+        //ShovelSource.clip = shovelSlash;
+        //ShovelSource.Play();
     }
 
    
