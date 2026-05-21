@@ -351,8 +351,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8883942
-  m_Center: {x: -0.011664929, y: 0.56237006, z: 0.091490746}
+  m_Radius: 1.3010098
+  m_Center: {x: 0.40094897, y: 0.5623662, z: 0.09149063}
 --- !u!1 &117171174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f36950c568f7f634384dbf731e1968b5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
