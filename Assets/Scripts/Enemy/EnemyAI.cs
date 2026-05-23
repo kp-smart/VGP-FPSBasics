@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
 
     public NavMeshAgent agent;
     public Transform player;
@@ -40,8 +40,6 @@ public class EnemyAI : MonoBehaviour
     {
         //player = GameObject.Find("Player").GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
-
-        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -84,16 +82,16 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(walkPoint);
         }
 
-        anim.SetBool("IsRunning", false);
-        anim.SetBool("IsIdle", true);
+        //anim.SetBool("IsRunning", false);
+        //anim.SetBool("IsIdle", true);
     }
 
     void ChasePlayer()
     {
         agent.SetDestination(player.position);
 
-        anim.SetBool("IsRunning", true);
-        anim.SetBool("IsIdle", false);
+       // anim.SetBool("IsRunning", true);
+       // anim.SetBool("IsIdle", false);
     }
 
 
