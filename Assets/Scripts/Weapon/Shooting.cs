@@ -32,6 +32,7 @@ public class Shooting : MonoBehaviour
     public GameObject Shovel;
     public bool canSlash = true;
     public float slashCooldown = 2.0f;
+    public Collider ShovelCollider;
     
     private void Start()
     {
@@ -67,9 +68,9 @@ public class Shooting : MonoBehaviour
                         var bullet = Instantiate(BulletPrefab, BulletSpawn.position, BulletSpawn.rotation); //spawns new bullet
                         bullet.SetActive(true); //make bullet visible
 
-                        Vector3 bulletDirection = GetBulletDirection();
-                        bullet.transform.rotation = Quaternion.LookRotation(bulletDirection);
-                        bullet.GetComponent<Rigidbody>().velocity = bulletDirection * BulletSpeed; //gives bullet speed      prev BulletSpawn.forward
+                        //Vector3 bulletDirection = GetBulletDirection();
+                        //bullet.transform.rotation = Quaternion.LookRotation(bulletDirection);
+                        bullet.GetComponent<Rigidbody>().velocity = BulletSpawn.forward * BulletSpeed; //gives bullet speed      prev BulletSpawn.forward
                         DelayLeft = StartingDelay;
                         BulletsLeft -= 1;
                     }
@@ -135,8 +136,9 @@ public class Shooting : MonoBehaviour
     void Slash()
     {
         canSlash = false;
-        //Animator anim = Shovel.GetComponent<Animator>();
-        //anim.SetTrigger("sword-attack");  
+        ShovelCollider.enabled = true;
+        Animator anim = Shovel.GetComponent<Animator>();
+        anim.SetTrigger("CanSlash");  
         audioPlayer.PlayShovelSlash();
         StartCoroutine(ResetAttackCooldown());
     }
@@ -144,6 +146,7 @@ public class Shooting : MonoBehaviour
     IEnumerator ResetAttackCooldown()
     {
         yield return new WaitForSeconds(slashCooldown);
+        ShovelCollider.enabled = false;
         canSlash = true;
     }
 }

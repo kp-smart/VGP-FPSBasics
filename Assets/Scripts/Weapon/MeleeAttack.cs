@@ -14,7 +14,6 @@ public class MeleeAttack : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("testslash");
         var enemyVar = collision.gameObject.GetComponent<SelfVariables>();
 
 
